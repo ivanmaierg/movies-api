@@ -1,5 +1,5 @@
 const express = require('express');
-const { MoviesService } = require('../services/movies');
+const MoviesService = require('../services/movies');
 
 function moviesApi(app) {
     const router = express.Router();
@@ -11,7 +11,7 @@ function moviesApi(app) {
             const movies = await moviesService.getMovies({ tags });;
             res.status(200).json({
                 data: movies,
-                message: 'movies listed'
+                message: 'movies listed',
             })
         } catch (err) {
             next(err);
@@ -23,19 +23,19 @@ function moviesApi(app) {
             const movies = await moviesService.getMovie({ movieId });
             res.status(200).json({
                 data: movies,
-                message: 'movie retrieve'
+                message: 'movie retrieved',
             });
         } catch (err) {
             next(err);
         }
     });
     router.post('/', async function (req, res, next) {
-        const { body: movie } = req
+        const { body: movie } = req;
         try {
             const createdMovieId = await moviesService.createMovie({ movie });
             res.status(200).json({
                 data: createdMovieId,
-                meesage: 'movies created'
+                meesage: 'movie created',
             })
         } catch (err) {
             next(err);
