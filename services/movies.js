@@ -1,4 +1,4 @@
-const MongoLib  = require('../lib/mongo');
+const MongoLib = require('../lib/mongo');
 
 class MoviesService {
     constructor() {
@@ -11,6 +11,7 @@ class MoviesService {
         return movies || [];
     }
     async getMovie({ movieId }) {
+
         const movie = await this.mongoDB.get(this.collection, movieId);
         return movie || {};
     }
@@ -23,7 +24,7 @@ class MoviesService {
         return updateMovieId;
     }
     async deleteMovie({ movieId }) {
-        const deleteMovieId = await this.mongoDB.create(this.collection, movieId);
+        const deleteMovieId = await this.mongoDB.delete(this.collection, movieId);
         return deleteMovieId;
     }
 }
