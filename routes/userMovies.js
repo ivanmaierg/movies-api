@@ -3,7 +3,7 @@ const UserMoviesService = require('../services/userMovies');
 const validationHandler = require('../utils/middlewares/validationHandler');
 
 
-const { movieIdSchema } = require('..utils/schemas/movies');
+const { movieIdSchema } = require('../utils/schemas/movies');
 const { userIdSchema } = require('../utils/schemas/users');
 const { createUserMovieSchema } = require('../utils/schemas/userMovies');
 
