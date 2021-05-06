@@ -1,5 +1,5 @@
 const boom = require('@hapi/boom')
-const joi = require('joi');
+const joi = require('@hapi/joi');
 function validationHandler(schema, data = 'body') {
     return async (req, res, next) => {
         try {

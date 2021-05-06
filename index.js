@@ -2,8 +2,13 @@ const express = require('express');
 const app = express();
 const { config } = require('./config/index');
 const helmet = require("helmet");
+
+// routes import
+const authApi = require('./routes/auth');
 const moviesApi = require('./routes/movies.js');
 const userMoviesApi = require('./routes/userMovies.js');
+
+// Handlers import
 const { logErrors, errorHandler, wrapError } = require('./utils/middlewares/errorHandlers.js');
 const notFoundHandler = require('./utils/middlewares/notFoundHandler');
 
@@ -16,6 +21,7 @@ app.use(helmet());
 
 
 // Routes
+authApi(app);
 moviesApi(app);
 userMoviesApi(app);
 
@@ -34,5 +40,5 @@ app.use(errorHandler);
 
 
 app.listen(config.port, function () {
-    console.log(`Listening http://localhost:${config.port}`)
+    console.log(`Listening http://localhost:${config.port}/`)
 })

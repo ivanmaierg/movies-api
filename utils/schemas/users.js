@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const joi = require('@hapi/joi');
-const { string } = require('joi');
+const { string } = require('@hapi/joi');
 
 // regex para definir un Id de mongo;
 const userIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}/);

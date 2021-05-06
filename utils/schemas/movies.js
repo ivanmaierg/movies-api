@@ -1,4 +1,4 @@
-const joi = require('joi');
+const joi = require('@hapi/joi');
 
 const movieIdSchema = joi.string().regex(/^[0-9a-fA-f{24}$]/);
 const movieTitleSchema = joi.string().max(80);

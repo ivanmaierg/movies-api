@@ -11,7 +11,8 @@ const config = {
     defaultAdminPassword: process.env.DEFAULT_ADMIN_PASSWORD,
     defaultUserPassword: process.env.DEFAULT_USER_PASSWORD,
     publicApiKeyToken: process.env.PUBLIC_API_KEY_TOKEN,
-    adminApiKeyToken: process.env.ADMIN_API_KEY_TOKEN
+    adminApiKeyToken: process.env.ADMIN_API_KEY_TOKEN,
+    authJwtSecret: process.env.AUTH_JWT_SECRET
 };
 
 module.exports = { config };

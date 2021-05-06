@@ -6,6 +6,10 @@ class UserService {
         this.collection = 'users';
         this.mongoDB = new MongoLib();
     }
+    async verifyUserExists({ email }) {
+        const [user] = await this.mongoDB.getAll(this.collection, { email })
+        return user
+    }
     async getUser({ email }) {
         const [user] = await this.mongoDB.getAll(this.collection, { email });
         return user;
@@ -16,7 +20,7 @@ class UserService {
         const createUserId = await this.mongoDB.create(this.collection, {
             name, email, password: hashedPassword
         });
-        return createUserId
+        return createUserId;
     }
 }
 module.exports = UserService;
