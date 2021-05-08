@@ -21,6 +21,6 @@ passport.use(new BasicStrategy(async function (email, password, cb) {
         return cb(null, user);
 
     } catch (error) {
-        return cb(error)
+        return cb(error);
     }
 }))

@@ -5,12 +5,10 @@ const jwt = require('jsonwebtoken');
 const ApiKeysService = require('../services/apiKeys');
 const UserService = require('../services/users');
 
-const validationHandler = require('../utils/middlewares/validationHandler')
+const validationHandler = require('../utils/middlewares/validationHandler');
 const { createUserSchema } = require('../utils/schemas/users');
 
 const { config } = require('../config');
-
-
 // Basic Strategy
 
 require('../utils/auth/strategies/basic');
@@ -36,7 +34,7 @@ function authApi(app) {
                         next(error);
                     }
                     const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken });
-                    console.log(apiKey)
+
                     if (!apiKey) {
                         next(boom.unauthorized());
                     }

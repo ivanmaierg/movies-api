@@ -28,7 +28,6 @@ const users = [
 async function createUser(mongoDB, user) {
     const { name, email, password, isAdmin } = user;
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const userId = await mongoDB.create('users', {
         name,
         email,
@@ -42,15 +41,17 @@ async function createUser(mongoDB, user) {
 async function seedUsers() {
     try {
         const mongoDB = new MongoLib();
-
         const promises = users.map(async user => {
-            const userId = await createUser(mongoDB, user);
-            debug(chalk.green('User created with id:', userId));
+            try{
+                const userId = await createUser(mongoDB, user);
+                debug(chalk.green('User created with id: ', userId));
+            }
+            catch(err){
+                return err;
+            }
         });
-
         await Promise.all(promises);
-        if (await mongoDB.getAll('users'))
-            chalk.green('success');
+
         return process.exit(0);
     } catch (error) {
         debug(chalk.red(error));
