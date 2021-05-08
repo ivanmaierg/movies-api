@@ -6,6 +6,10 @@ const validationHandler = require('../utils/middlewares/validationHandler');
 const { movieIdSchema } = require('../utils/schemas/movies');
 const { userIdSchema } = require('../utils/schemas/users');
 const { createUserMovieSchema } = require('../utils/schemas/userMovies');
+const passport = require('passport');
+const scopesValidationHandler = require('../utils/middlewares/scopeValidate');
+
+
 
 function userMoviesApi(app) {
     const router = express.Router();
@@ -25,7 +29,7 @@ function userMoviesApi(app) {
             }
         }
     )
-    router.post('/', validationHandler(createUserMovieSchema), async function (req, res, next) {
+    router.post('/', passport.authenticate('jwt', { session: false }), scopesValidationHandler(['create:user-movies']),validationHandler(createUserMovieSchema), async function (req, res, next) {
         const { body: userMovie } = req;
         try {
             const createdUserMovieId = await userMoviesService.createdUserMovie({ userMovie })
@@ -37,7 +41,7 @@ function userMoviesApi(app) {
             next(err);
         }
     });
-    router.delete('/:userMovieId', validationHandler({ userMovieId: movieIdSchema }, 'params'),
+    router.delete('/:userMovieId', passport.authenticate('jwt', { session: false }), scopesValidationHandler(['delete:user-movies']), validationHandler(createUserMovieSchema), validationHandler({ userMovieId: movieIdSchema }, 'params'),
         async function (req, res, next) {
             const { userMovieId } = req.params;
             try {
