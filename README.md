@@ -15,8 +15,9 @@ este ultimo el que utiliza nuestro proxy server.
 
 # Scripts: #
 
-npm run dev: Arranca la api en modo dev
-npm start: Arranca la api en modo producción
+npm run dev: Arranca la api en modo dev.
+
+npm start: Arranca la api en modo producción.
 
 La carpeta scripts/mongo contiene scripts utiles para generar un Admin Rol y un Client Rol con sus respectivos scopes de autorización, además
 cuenta con scripts para generar usuarios y películas con objetivos de testing.
